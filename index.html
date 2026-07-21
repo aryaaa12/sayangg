@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teruntuk Andini ❤️</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+        }
+        h1 {
+            color: #ff4d4d;
+            font-size: 1.5rem;
+            padding: 0 20px;
+            line-height: 1.5;
+        }
+        .buttons {
+            margin-top: 30px;
+            position: relative;
+            width: 100%;
+            height: 100px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #yes {
+            background-color: #ff4d4d;
+            position: absolute;
+            left: 20%;
+            transform: translateX(-50%);
+        }
+        #no {
+            background-color: #999;
+            position: absolute;
+            right: 20%;
+            transform: translateX(50%);
+            transition: 0.2s ease-out;
+        }
+        .hidden {
+            display: none !important;
+        }
+        #message {
+            color: #ff4d4d;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 2rem;
+            animation: float 2.5s ease-in forwards;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-150px) scale(2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="question">Hai Andini Rismayanti sayang... ❤️<br><br>Sering 'kan nanya seberapa besar perasaanku?<br>Sekarang gantian, kamu sayang aku juga nggak?</h1>
+
+    <div class="buttons" id="btn-container">
+        <button id="yes" onclick="sayang()">Sayang Banget!</button>
+        <button id="no" onmouseover="kabur()" ontouchstart="kabur()">Nggak</button>
+    </div>
+
+    <div id="message" class="hidden">
+        Yeay! Aku juga sayang banget banget sama kamu, Andini! ❤️<br>
+        Jadi, tolong jangan pernah ragu lagi sama perasaanku ya! ✨
+    </div>
+
+    <script>
+        function kabur() {
+            const btnNo = document.getElementById('no');
+            const maxX = window.innerWidth - btnNo.offsetWidth - 20;
+            const maxY = window.innerHeight - btnNo.offsetHeight - 20;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY) - (window.innerHeight / 2) + 50;
+            
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = (window.innerHeight / 2 + randomY) + 'px';
+            btnNo.style.transform = 'none';
+        }
+
+        function sayang() {
+            document.getElementById('question').classList.add('hidden');
+            document.getElementById('btn-container').classList.add('hidden');
+            document.getElementById('message').classList.remove('hidden');
+
+            for (let i = 0; i < 70; i++) {
+                setTimeout(createHeart, i * 70);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 2500); 
+        }
+    </script>
+</body>
+</html>
